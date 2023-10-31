@@ -1,6 +1,9 @@
 name: C/C++ CI
 
-on: [push]
+on:
+  push:
+    branches:
+      - main  # Adjust the branch as needed
 
 jobs:
   build:
@@ -8,5 +11,11 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - name: configure all
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Configure
       run: cmake -DWITH_examples=ON -DWITH_tests=ON -DWITH_demos=ON .
+
+    - name: Build
+      run: make  # Replace with your build command
